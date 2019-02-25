@@ -1,0 +1,19 @@
+<!--
+<html>
+<head>
+    {%if title%}
+        <title>Flask Blog - {{title}}</title>
+    {%else%}
+        <title>Flask Blog</title>
+    {%endif%}
+</head>
+<body>
+    <h2>About Page</h2>
+</body>
+</html>-->
+
+{%extends "layout.html"%} <!--fazendo esse extends nós evitamos ter que criar todo o cabeçalho do html novamente,assim sendo, nosso bloco herda todas a funcionalidade do layout
+substituindo apenas o que queremos que no caso é o bloco content abaixo-->
+{%block content%}
+<h2>About Page</h2>
+{%endblock content%}

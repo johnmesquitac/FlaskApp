@@ -1,0 +1,28 @@
+<!--<!DOCTYPE html>
+<html>
+<head>
+    {%if title%}
+        <title>Flask Blog - {{title}}</title>
+    {%else%}
+        <title>Flask Blog</title>
+    {%endif%}
+</head>
+<body>
+    
+    {%for post in posts%}
+    <h1>{{post.title}}</h1>
+    <p>by {{post.author}} on {{post.date_posted}}</p>
+    <p>{{post.content}}</p>
+    {%endfor%}
+</body>
+</html>-->
+
+{%extends "layout.html"%} <!--fazendo esse extends nós evitamos ter que criar todo o cabeçalho do html novamente,assim sendo, nosso bloco herda todas a funcionalidade do layout
+    substituindo apenas o que queremos que no caso é o bloco content abaixo-->
+    {%block content%}
+    {%for post in posts%}
+        <h1>{{post.title}}</h1>
+        <p>by {{post.author}} on {{post.date_posted}}</p>
+        <p>{{post.content}}</p>
+    {%endfor%}
+{%endblock content%}

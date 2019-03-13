@@ -15,12 +15,12 @@ class RegistrationForm(FlaskForm):
     def validate_username(self,username):
         user = User.query.filter_by(username=username.data).first()
         if user:
-                raise ValidationError('That username is taken. Please choose a diferent one!')
+                raise ValidationError(message='That username is taken. Please choose a diferent one!')
 
     def validate_email(self,email):
             user = User.query.filter_by(email=email.data).first()
             if user:
-                    raise ValidationError('That email is taken. Please choose a diferent one!')
+                    raise ValidationError(message='That email is taken. Please choose a diferent one!')
 
 class LoginForm(FlaskForm):
     email = StringField('Email',validators=[DataRequired(),Email()])
@@ -33,17 +33,18 @@ class UpdateAccountForm(FlaskForm):
     username = StringField('Username', 
                             validators=[DataRequired(),Length(min=2,max=20)])
     email = StringField('Email',validators=[DataRequired(),Email()])
-    submit = SubmitField('Update')
     picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg','png','jpeg'])])
+    submit = SubmitField('Update')
+   
     def validate_username(self,username):
         if username.data != current_user.username:
             user = User.query.filter_by(username=username.data).first()
-        if user:
-                raise ValidationError('That username is taken. Please choose a diferent one!')
+            if user:
+                raise ValidationError(message='That username is taken. Please choose a diferent one!')
 
     def validate_email(self,email):
         if email.data != current_user.email:
             user = User.query.filter_by(email=email.data).first()
             if user:
-                    raise ValidationError('That email is taken. Please choose a diferent one!')
+                    raise ValidationError(message='That email is taken. Please choose a diferent one!')
 

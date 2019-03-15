@@ -1,26 +1,6 @@
-<!--<!DOCTYPE html>
-<html>
-<head>
-    {%if title%}
-        <title>Flask Blog - {{title}}</title>
-    {%else%}
-        <title>Flask Blog</title>
-    {%endif%}
-</head>
-<body>
-    
-    {%for post in posts%}
-    <h1>{{post.title}}</h1>
-    <p>by {{post.author}} on {{post.date_posted}}</p>
-    <p>{{post.content}}</p>
-    {%endfor%}
-</body>
-</html>-->
-
 {%extends "layout.html"%} <!--fazendo esse extends nós evitamos ter que criar todo o cabeçalho do html novamente,assim sendo, nosso bloco herda todas a funcionalidade do layout
     substituindo apenas o que queremos que no caso é o bloco content abaixo-->
-    {%block content%}
-    {%for post in posts%}
+{%block content%}
     <article class="media content-section">
         <img class="rounded-circle article-img" src="{{url_for('static', filename='profile_pics/'+ post.author.image_file)}}">
             <div class="media-body">
@@ -28,9 +8,8 @@
                 <a class="mr-2" href="#">{{ post.author.username }}</a>
                 <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d')}}</small>
               </div>
-              <h2><a class="article-title" href="{{url_for('post', post_id=post.id )}}">{{ post.title }}</a></h2>
+              <h2 class="article-title">{{ post.title }}</h2>
               <p class="article-content">{{ post.content }}</p>
             </div>
           </article>
-    {%endfor%}
 {%endblock content%}
